@@ -7,13 +7,7 @@ var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 
-// node liri.js concert-this <artist/band name here>
 
-// This will search the Bands in Town Artist Events API ("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp") for an artist and render the following information about each event to the terminal:
-
-// Name of the venue
-// Venue location
-// Date of the Event (use moment to format this as "MM/DD/YYYY")
 var startGame = function(firstArg,secondArg){
 switch (firstArg) {
   case 'concert-this':
@@ -21,16 +15,16 @@ switch (firstArg) {
     concert(secondArg);
     break;
   case 'spotify-this-song':
-    // spotify(secondArg);
-    spotify.search({ type: 'track', query: secondArg }, function(err, data) {
-        if (err) {
-          return console.log('Error occurred: ' + err);
-        }
-      console.log(data.tracks.items[0].artists[0].name);
-      console.log(data.tracks.items[0].name); 
-      console.log(data.tracks.items[0].external_urls.spotify);
-      console.log(data.tracks.items[0].album.name);
-      });
+    spotify(secondArg);
+    // spotify.search({ type: 'track', query: secondArg }, function(err, data) {
+    //     if (err) {
+    //       return console.log('Error occurred: ' + err);
+    //     }
+    //   console.log(data.tracks.items[0].artists[0].name);
+    //   console.log(data.tracks.items[0].name); 
+    //   console.log(data.tracks.items[0].external_urls.spotify);
+    //   console.log(data.tracks.items[0].album.name);
+    //   });
     break;
   case 'movie-this':
     movie(secondArg);
@@ -39,7 +33,7 @@ switch (firstArg) {
     doWhatItSays();
     break;
   default:
-    console.log("Please enter the right action to be perforemd.");
+    console.log("Please enter the right action to be performed.");
 }
 }
 
@@ -58,13 +52,27 @@ function concert (secondParameter) {
 function movie(secondParameter) {
     var queryUrl = "http://www.omdbapi.com/?t=" + secondParameter + "&y=&plot=short&apikey=trilogy";
     axios.get(queryUrl).then(function(response) {
-        console.log(response.data);
+        console.log(response.data.Title);
+        console.log(response.data.Year);
+        console.log(response.data.Ratings[0].Value);
+        console.log(response.data.Ratings[1].Value);
+        console.log(response.data.Country);
+        console.log(response.data.Plot);
+        console.log(response.data.Actors);
     })
 }
 
-// function spotify(secondParameter) {
-    
-// }
+function spotify(secondParameter) {
+    spotify.search({ type: 'track', query: secondParameter }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+      console.log(data.tracks.items[0].artists[0].name);
+      console.log(data.tracks.items[0].name); 
+      console.log(data.tracks.items[0].external_urls.spotify);
+      console.log(data.tracks.items[0].album.name);
+      });
+}
 
 function doWhatItSays(){
     fs.readFile("random.txt", "utf8", function(err, data){
@@ -75,11 +83,4 @@ function doWhatItSays(){
     })
 }
 
-// * Title of the movie.
-// * Year the movie came out.
-// * IMDB Rating of the movie.
-// * Rotten Tomatoes Rating of the movie.
-// * Country where the movie was produced.
-// * Language of the movie.
-// * Plot of the movie.
-// * Actors in the movie.
+
