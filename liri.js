@@ -53,6 +53,10 @@ function movie(secondParameter) {
     })
 }
 
+function spotify(secondParameter) {
+    vary queryUrl = 
+}
+
 function doWhatItSays(){
     fs.readFile("random.txt", "utf8", function(err, data){
         console.log("data: " +data);
