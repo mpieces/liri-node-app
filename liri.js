@@ -21,7 +21,16 @@ switch (firstArg) {
     concert(secondArg);
     break;
   case 'spotify-this-song':
-    spotify(secondArg);
+    // spotify(secondArg);
+    spotify.search({ type: 'track', query: secondArg }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+      console.log(data.tracks.items[0].artists[0].name);
+      console.log(data.tracks.items[0].name); 
+      console.log(data.tracks.items[0].external_urls.spotify);
+      console.log(data.tracks.items[0].album.name);
+      });
     break;
   case 'movie-this':
     movie(secondArg);
@@ -53,15 +62,15 @@ function movie(secondParameter) {
     })
 }
 
-function spotify(secondParameter) {
-    vary queryUrl = 
-}
+// function spotify(secondParameter) {
+    
+// }
 
 function doWhatItSays(){
     fs.readFile("random.txt", "utf8", function(err, data){
         console.log("data: " +data);
         var dataArr = data.split(",");
-        console.log("data ARR: " +dataArr[1]);
+        console.log("data ARR: " + dataArr[1]);
         startGame(dataArr[0],dataArr[1]);
     })
 }
