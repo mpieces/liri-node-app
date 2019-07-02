@@ -11,11 +11,10 @@ var spotify = new Spotify(keys.spotify);
 var startGame = function(firstArg,secondArg){
 switch (firstArg) {
   case 'concert-this':
-    console.log("concert-this");
+    // console.log("concert-this");
     concert(secondArg);
     break;
   case 'spotify-this-song':
-    // spotify is not a function?
     spotifyMusic(secondArg);
     break;
   case 'movie-this':
