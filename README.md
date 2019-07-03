@@ -13,9 +13,9 @@ Make sure to first install the necessary packages using NPM. Then, in the termin
 ## Technologies Used:
 Javascript, Node.js, NPM, Axios, Moment.js
 ## Screenshots:
-![Image of concert-this](/images/1-concert-this.png)
+![Image of concert-this](images/1-concert-this.png)
 ![Image of movie-this](images/2-movie-this.png) 
-![Image of spotify-this-song](/images/3-spotify-this-song.png)
-![Image of do-what-it-says](/images/4-do-what-it-says.png)
+![Image of spotify-this-song](images/3-spotify-this-song.png)
+![Image of do-what-it-says](images/4-do-what-it-says.png)
 
 
